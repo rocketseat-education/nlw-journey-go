@@ -75,11 +75,12 @@ func run(ctx context.Context) (err error) {
 		return err
 	}
 
+	api := api.NewAPI(pool, mailpit.New(pool), l)
 	r := chi.NewMux()
 	r.Use(middleware.RequestID)
 	r.Use(middleware.Recoverer)
 	r.Use(httputils.ChiLogger(l.Named("mux")))
-	r.Mount("/", spec.Handler(api.NewAPI(pool, mailpit.New(pool), l)))
+	r.Mount("/", spec.Handler(api, spec.WithErrorHandler(api.ErrorHandlerFunc)))
 
 	srv := &http.Server{
 		Addr:         ":8080",

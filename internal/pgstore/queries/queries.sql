@@ -30,11 +30,9 @@ WHERE
     id = $1;
 
 -- name: ConfirmParticipant :exec
-SELECT
-    "id", "trip_id", "email", "is_confirmed"
-FROM participants
-WHERE
-    id = $1;
+UPDATE participants
+SET "is_confirmed" = true
+WHERE id = $1;
 
 
 -- name: GetParticipants :many

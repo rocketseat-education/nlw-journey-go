@@ -1,0 +1,3 @@
+{
+  "message": "invalid input: Key: 'CreateTripRequest.Destination' Error:Field validation for 'Destination' failed on the 'required' tag\nKey: 'CreateTripRequest.EmailsToInvite' Error:Field validation for 'EmailsToInvite' failed on the 'required' tag\nKey: 'CreateTripRequest.EndsAt' Error:Field validation for 'EndsAt' failed on the 'required' tag\nKey: 'CreateTripRequest.OwnerEmail' Error:Field validation for 'OwnerEmail' failed on the 'required' tag\nKey: 'CreateTripRequest.OwnerName' Error:Field validation for 'OwnerName' failed on the 'required' tag\nKey: 'CreateTripRequest.StartsAt' Error:Field validation for 'StartsAt' failed on the 'required' tag"
+}

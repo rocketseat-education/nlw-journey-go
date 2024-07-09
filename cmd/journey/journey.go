@@ -16,6 +16,7 @@ import (
 	"github.com/phenpessoa/gutils/netutils/httputils"
 	"github.com/rocketseat-education/nlw-journey-go/internal/api"
 	"github.com/rocketseat-education/nlw-journey-go/internal/api/spec"
+	"github.com/rocketseat-education/nlw-journey-go/internal/mailer/mailpit"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
@@ -63,7 +64,11 @@ func run(ctx context.Context) error {
 	r := chi.NewMux()
 	r.Use(middleware.RequestID, middleware.Recoverer, httputils.ChiLogger(logger))
 
-	si := api.NewApi(pool, logger)
+	si := api.NewApi(
+		pool,
+		logger,
+		mailpit.NewMailPit(pool),
+	)
 
 	r.Mount("/", spec.Handler(&si))
 

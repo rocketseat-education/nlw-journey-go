@@ -407,15 +407,28 @@
       },
       "InviteParticipantRequest": {
         "type": "object",
-        "properties": { "email": { "type": "string", "format": "email" } },
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "x-go-extra-tags": { "validate": "required,email" }
+          }
+        },
         "required": ["email"],
         "additionalProperties": false
       },
       "CreateActivityRequest": {
         "type": "object",
         "properties": {
-          "occurs_at": { "type": "string", "format": "date-time" },
-          "title": { "type": "string" }
+          "occurs_at": {
+            "type": "string",
+            "format": "date-time",
+            "x-go-extra-tags": { "validate": "required" }
+          },
+          "title": {
+            "type": "string",
+            "x-go-extra-tags": { "validate": "required" }
+          }
         },
         "required": ["occurs_at", "title"],
         "additionalProperties": false
@@ -466,8 +479,15 @@
       "CreateLinkRequest": {
         "type": "object",
         "properties": {
-          "title": { "type": "string" },
-          "url": { "type": "string", "format": "uri" }
+          "title": {
+            "type": "string",
+            "x-go-extra-tags": { "validate": "required" }
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "x-go-extra-tags": { "validate": "required,url" }
+          }
         },
         "required": ["title", "url"],
         "additionalProperties": false
@@ -502,15 +522,35 @@
       "CreateTripRequest": {
         "type": "object",
         "properties": {
-          "destination": { "type": "string", "minLength": 4 },
-          "starts_at": { "type": "string", "format": "date-time" },
-          "ends_at": { "type": "string", "format": "date-time" },
+          "destination": {
+            "type": "string",
+            "minLength": 4,
+            "x-go-extra-tags": { "validate": "required,min=4" }
+          },
+          "starts_at": {
+            "type": "string",
+            "format": "date-time",
+            "x-go-extra-tags": { "validate": "required" }
+          },
+          "ends_at": {
+            "type": "string",
+            "format": "date-time",
+            "x-go-extra-tags": { "validate": "required" }
+          },
           "emails_to_invite": {
             "type": "array",
+            "x-go-extra-tags": { "validate": "required,dive,email" },
             "items": { "type": "string", "format": "email" }
           },
-          "owner_name": { "type": "string" },
-          "owner_email": { "type": "string", "format": "email" }
+          "owner_name": {
+            "type": "string",
+            "x-go-extra-tags": { "validate": "required" }
+          },
+          "owner_email": {
+            "type": "string",
+            "format": "email",
+            "x-go-extra-tags": { "validate": "required,email" }
+          }
         },
         "required": [
           "destination",
@@ -559,9 +599,21 @@
       "UpdateTripRequest": {
         "type": "object",
         "properties": {
-          "destination": { "type": "string", "minLength": 4 },
-          "starts_at": { "type": "string", "format": "date-time" },
-          "ends_at": { "type": "string", "format": "date-time" }
+          "destination": {
+            "type": "string",
+            "minLength": 4,
+            "x-go-extra-tags": { "validate": "required,min=4" }
+          },
+          "starts_at": {
+            "type": "string",
+            "format": "date-time",
+            "x-go-extra-tags": { "validate": "required" }
+          },
+          "ends_at": {
+            "type": "string",
+            "format": "date-time",
+            "x-go-extra-tags": { "validate": "required" }
+          }
         },
         "required": ["destination", "starts_at", "ends_at"],
         "additionalProperties": false

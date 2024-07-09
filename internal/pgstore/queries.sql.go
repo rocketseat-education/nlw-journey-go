@@ -13,11 +13,9 @@ import (
 )
 
 const confirmParticipant = `-- name: ConfirmParticipant :exec
-SELECT
-    "id", "trip_id", "email", "is_confirmed"
-FROM participants
-WHERE
-    id = $1
+UPDATE participants
+SET "is_confirmed" = true
+WHERE id = $1
 `
 
 func (q *Queries) ConfirmParticipant(ctx context.Context, id uuid.UUID) error {
